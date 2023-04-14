@@ -1,0 +1,65 @@
+new
+round 0.2
+config cell
+set delc on
+block 0  0 &
+0  653.57 &
+100  653.57 &
+256.405  592.7 &
+293.49  559.3 &
+313.91  555.8 &
+347.24  518.2 &
+542.88  476.1 &
+716.485  413.4 &
+720.25  348.5 &
+742.9756  363.1 &
+793.34  352.7 &
+900.84  281 &
+904.6  256.7 &
+924.49  231.2 &
+1009.945  126.6 &
+1014.245  100 &
+1114.245  100 &
+1114.245  0 &
+
+
+jregion id 1 0 576.28 0 653.57 359.17 653.6 347.2 518.2
+jset (68.5,0) (800,0) (0,0) (18,0) range jreg 1
+jset (156,0) (800,0) (0,0) (12,0) range jreg 1
+jregion id 2 0 431.44 0 576.28 904.6 424.96 904.6 256.7
+jset (68.5,0) (800,0) (0,0) (9,0) range jreg 2
+jset (156,0) (800,0) (0,0) (6,0) range jreg 2
+jregion id 3 0 295.66 0 431.44 904.6 256.7 1009.9 126.6
+jset (68.5,0) (800,0) (0,0) (18,0) range jreg 3
+jset (156,0) (800,0) (0,0) (12,0) range jreg 3
+jregion id 4 0 120.32 0 295.66 1397.54 61.71 1397.54 -103.0218
+jset (68.5,0) (800,0) (0,0) (9,0) range jreg 4
+jset (156,0) (800,0) (0,0) (6,0) range jreg 4
+jregion id 5 0 0 0 120.32 752.88 0  600 -100 
+jset (68.5,0) (800,0) (0,0) (18,0) range jreg 5
+jset (156,0) (800,0) (0,0) (12,0) range jreg 5
+
+pro mat=1 d=2500 b=3.3e9 s=2e9 fric=35 coh=1e5 tension=1e5
+pro jmat=1 jkn=3e9 jks=1e9 jfric=30 jcoh=1e4
+pro jmat=2 jkn=6e9 jks=2e9 jfric=35 jcoh=2e4
+change jcons=2 jmat=1 range angle 66 70
+change jcons=2 jmat=2 range angle 154 158
+gen edge 50.0
+bou xvel 0 range x -1 1
+bou xvel 0 range x 1113.7 1114.7
+bou yvel 0 range y -1 1
+grav 0 -9.81
+hist n=100 xdis 1114.245  100 ydis 1114.245  100
+hist n=100 xdis 1009.945  126.6 ydis 1009.945  126.6
+hist n=100 xdis 793.34  352.7 ydis 793.34  352.7
+hist n=100 xdis 742.9756  363.1 ydis 742.9756  363.1
+hist n=100 xdis 716.485  413.4 ydis 716.485  413.4
+hist n=100 xdis 347.24  518.2  ydis 347.24  518.2 
+hist n=100 xdis 313.91  555.8 ydis 313.91  555.8
+hist n=100 xdis 293.49  559.3 ydis 293.49  559.3
+hist n=100 xdis 256.405  592.7 ydis 256.405  592.7
+hist n=100 xdis 100  653.57 ydis 100  653.57
+
+damp auto 
+set ovtol 0.5
+

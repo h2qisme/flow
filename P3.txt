@@ -1,0 +1,45 @@
+new
+round 0.2
+config cell
+set delc on
+block 0  0 &
+0  338.0305 &
+100  338.0305 &
+139.523  326.0245 &
+143.915  333.0875 &
+146.7375  324.8335 &
+357.21  259.0405 &
+421.2  251.0645 &
+458.9393  246.3605 &
+459.47  208.7565 &
+519.7  206.8415 &
+697.55  100 &
+797.55  100 &
+797.55  0 &
+
+jregion id 1 0 0 0 389 797.55 389 797.55 0
+jset (68.5,0) (800,0) (0,0) (9,0) range jreg 1
+jset (156,0) (800,0) (0,0) (6,0) range jreg 1
+
+pro mat=1 d=2500 b=3.3e9 s=2e9 fric=35 coh=1e5 tension=1e5
+pro jmat=1 jkn=3e9 jks=1e9 jfric=30 jcoh=1e4
+pro jmat=2 jkn=6e9 jks=2e9 jfric=35 jcoh=2e4
+change jcons=2 jmat=1 range angle 66 70
+change jcons=2 jmat=2 range angle 154 158
+gen edge 20.0
+bou xvel 0 range x -1 1
+bou xvel 0 range x 797 798
+bou yvel 0 range y -1 1
+grav 0 -9.81
+
+hist n=100 xdis 697.55  100 ydis 697.55  100
+hist n=100 xdis 519.7  206.8415 ydis 519.7  206.8415
+hist n=100 xdis 458.9393  246.3605 ydis 458.9393  246.3605
+hist n=100 xdis 421.2  251.0645   ydis 421.2  251.0645 
+hist n=100 xdis 357.21  259.0405  ydis 357.21  259.0405 
+hist n=100 xdis 143.915  333.0875  ydis 143.915  333.0875 
+hist n=100 xdis 139.523  326.0245 ydis 139.523  326.0245
+hist n=100 xdis 100  338.0305 ydis 100  338.0305 
+
+damp auto 
+set ovtol 0.5
